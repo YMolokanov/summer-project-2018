@@ -45,6 +45,11 @@ function dichotomy_minimization
   plot(dx, f(dx), '-b', x_final, f(x_final), 'ro', x_temp, f(x_temp), 'kx');
   legend('Objective function', 'Final minimum point', 'Intermediate minimum points');
   
+  % ƒобавл€ем метки к неокончательным приближени€м минимума с номерами итераций, на которых они были получены
+  for i = 1 : length(x_temp)
+    text(x_temp(i), f(x_temp(i)), sprintf('%d', i), 'VerticalAlignment','top','HorizontalAlignment','left');
+  end
+  
 	% ¬ыводим результаты в консоль
 	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x_final, f(x_final), k, l);
 	
