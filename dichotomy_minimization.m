@@ -1,9 +1,11 @@
 function dichotomy_minimization
   
-	left = 0.5;		  % Левый конец сегмента локализации
-	right = 1;		  % Правый конец сегмента локализации
-	alpha = 0.001;	% Константа различимости
-	epsilon = 0.01;	% Требуемая точность
+  f = str2func(strcat('@(x) ', input('- Objective function handle: @(x) ', 's')));  % Считываем и генерируем хэндл целевой функции  
+	left  = input('- Left end of the segment:  ');  % Левый конец сегмента локализации
+	right = input('- Right end of the segment: ');  % Правый конец сегмента локализации
+	epsilon = input('- Desired precision:  ');  % Требуемая точность
+  
+  alpha = 0.001;	% Константа различимости	
   
   k = 0;	% Инициализируем счетчик итераций
 	l = 0;	% Инициализируем счетчик вычислений функции
@@ -37,13 +39,4 @@ function dichotomy_minimization
 	% Выводим результаты в консоль
 	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x, f(x), k, l);
 	
-end
-
-
-
-% Целевая функция
-function y = f(x)
-  
-	y = x^2 + 3*x*(log(x) - 1);
-  
 end
