@@ -1,4 +1,5 @@
 function dichotomy_minimization
+  
 	left = 0.5;		  % Левый конец сегмента локализации
 	right = 1;		  % Правый конец сегмента локализации
 	alpha = 0.001;	% Константа различимости
@@ -27,6 +28,7 @@ function dichotomy_minimization
 		end
     
 		k += 1;	% Инкрементируем счетчик итераций
+    
 	end
 	
   % Вычисляем точку минимума
@@ -38,7 +40,10 @@ function dichotomy_minimization
 end
 
 
+
 % Целевая функция
 function y = f(x)
+  
 	y = x^2 + 3*x*(log(x) - 1);
+  
 end
