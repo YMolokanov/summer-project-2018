@@ -6,8 +6,9 @@ function dichotomy_minimization
 	epsilon = 0.01;	% Требуемая точность
   n = 50;         % Количество сегментов сетки
   
-  k  = 0;	% Инициализируем счетчик итераций
-	l  = 0;	% Инициализируем счетчик вычислений функции
+  k = 0; 	      % Инициализируем счетчик итераций
+	l = 0; 	      % Инициализируем счетчик вычислений функции
+  x_temp = [];  % Инициализируем вектор приближенных значений минимума
   dx = left : (right - left)/n : right; % Генерируем сетку
   
 	% Пока длина сегмента локализации меньше требуемой точности
@@ -29,20 +30,23 @@ function dichotomy_minimization
 			right = right_new;
 		end
     
+    % Добавляем в вектор приближений текущую точку минимума
+    x_temp = [x_temp; (left + right) / 2];
+    
 		k += 1;	% Инкрементируем счетчик итераций
     
 	end
-	
-  % Вычисляем точку минимума
-	x = (left + right) / 2;	
+	  
+	x_final = x_temp(end);	% Определяем последнее найденное приближение точки минимума
+  x_temp(end) = [];       % Удаляем его из вектора приближений, чтобы не отрисовывать дважды
 	
   % Строим график
   figure('Name','Dichotomy minimization method','NumberTitle','off'), 
-  plot(dx, f(dx), '-b', x, f(x), 'rx');
-  legend('Objective function', 'Minimum point');  
+  plot(dx, f(dx), '-b', x_final, f(x_final), 'ro', x_temp, f(x_temp), 'kx');
+  legend('Objective function', 'Final minimum point', 'Intermediate minimum points');
   
 	% Выводим результаты в консоль
-	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x, f(x), k, l);
+	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x_final, f(x_final), k, l);
 	
 end
 
