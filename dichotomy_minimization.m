@@ -4,9 +4,11 @@ function dichotomy_minimization
 	right = 1;		  % Правый конец сегмента локализации
 	alpha = 0.001;	% Константа различимости
 	epsilon = 0.01;	% Требуемая точность
+  n = 50;         % Количество сегментов сетки
   
-  k = 0;	% Инициализируем счетчик итераций
-	l = 0;	% Инициализируем счетчик вычислений функции
+  k  = 0;	% Инициализируем счетчик итераций
+	l  = 0;	% Инициализируем счетчик вычислений функции
+  dx = left : (right - left)/n : right; % Генрируем сетку
   
 	% Пока длина сегмента локализации меньше требуемой точности
 	while (right - left > epsilon)
@@ -34,6 +36,11 @@ function dichotomy_minimization
   % Вычисляем точку минимума
 	x = (left + right) / 2;	
 	
+  % Строим график
+  figure('Name','Dichotomy minimization method','NumberTitle','off'), 
+  plot(dx, f(dx), '-b', x, f(x), 'rx');
+  legend('Objective function', 'Minimum point');  
+  
 	% Выводим результаты в консоль
 	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x, f(x), k, l);
 	
