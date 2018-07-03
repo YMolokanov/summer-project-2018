@@ -3,7 +3,10 @@ function dichotomy_minimization
 	right = 1;		  % Правый конец сегмента локализации
 	alpha = 0.001;	% Константа различимости
 	epsilon = 0.01;	% Требуемая точность
-  	
+  
+  k = 0;	% Инициализируем счетчик итераций
+	l = 0;	% Инициализируем счетчик вычислений функции
+  
 	% Пока длина сегмента локализации меньше требуемой точности
 	while (right - left > epsilon)
 		
@@ -14,6 +17,7 @@ function dichotomy_minimization
 		% Вычисляем значение функции в этих точках
 		f_left_new  = f(left_new);
 		f_right_new = f(right_new);
+		l += 2;	% Инкрементируем счетчик вычислений функции
 		
 		% Определяем концы нового сегмента локализации
 		if (f_left_new > f_right_new)
@@ -22,13 +26,14 @@ function dichotomy_minimization
 			right = right_new;
 		end
     
+		k += 1;	% Инкрементируем счетчик итераций
 	end
 	
   % Вычисляем точку минимума
 	x = (left + right) / 2;	
 	
 	% Выводим результаты в консоль
-	printf("Minimum:\t%d\nFunction value:\t%d\n", x, f(x));
+	printf("Minimum:\t%d\nFunction value:\t%d\nIterations:\t%d\nCalls:\t%d\n", x, f(x), k, l);
 	
 end
 
