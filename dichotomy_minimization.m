@@ -35,7 +35,7 @@ function dichotomy_minimization
 	x = (left + right) / 2;	
 	
 	% Выводим результаты в консоль
-	printf("Minimum:\t%d\nFunction value:\t%d\nIterations:\t%d\nCalls:\t%d\n", x, f(x), k, l);
+	printf("Minimum:       \t%d\nFunction value:\t%d\nIterations:    \t%d\nCalls:         \t%d\n", x, f(x), k, l);
 	
 end
 
