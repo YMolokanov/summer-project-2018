@@ -8,7 +8,7 @@ function dichotomy_minimization
   
   k  = 0;	% Инициализируем счетчик итераций
 	l  = 0;	% Инициализируем счетчик вычислений функции
-  dx = left : (right - left)/n : right; % Генрируем сетку
+  dx = left : (right - left)/n : right; % Генерируем сетку
   
 	% Пока длина сегмента локализации меньше требуемой точности
 	while (right - left > epsilon)
